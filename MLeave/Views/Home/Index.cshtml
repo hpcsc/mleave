@@ -1,0 +1,153 @@
+﻿@model List<MLeave.Models.User>
+           @{
+               var baseUrl = "http://mleave.azurewebsites.net/";
+           }
+<div class="row" style="margin-top: 20px">
+
+    <div class="page-header" >
+        <h3>API</h3>
+    </div>
+
+    <table class="table table-bordered" >
+        <thead>
+            <tr>
+                <th>Url</th>
+                <th>Method</th>
+                <th>Parameters</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@(baseUrl)overview</td>
+                <td>GET</td>
+                <td>email={UserEmail}</td>
+                <td>
+                    Get upcoming leaves and leave entitlement
+                    <br/>
+                    <span class="text-danger">Note: upcoming leaves has grouping with weekend, but not yet check holidays</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@(baseUrl)user/projects</td>
+                <td>GET</td>
+                <td>email={UserEmail}</td>
+                <td>Get last 20 projects that user belongs to</td>
+            </tr>
+            <tr>
+                <td>@(baseUrl)leavetypes</td>
+                <td>GET</td>
+                <td></td>
+                <td>Get available leave types</td>
+            </tr>
+            <tr>
+                <td>@(baseUrl)user/leaves</td>
+                <td>GET</td>
+                <td>
+                    email={UserEmail}<br/>
+                    year={Year}<br/>
+                    month={Month [1-12]}<br/>
+                </td>
+                <td>Get leaves that user applied in a specific month</td>
+            </tr>
+            <tr>
+                <td>@(baseUrl)project</td>
+                <td>GET</td>
+                <td>
+                    id={ProjectId}<br />
+                    year={Year}<br />
+                    month={Month [1-12]}<br />
+                    <span class="text-danger">Note: {ProjectId} is id returned by api user/projects</span>
+                </td>
+                <td>Get count by day of leaves + holidays for members in a project in a specific month</td>
+            </tr>
+            <tr>
+                <td>@(baseUrl)project/leavedetails</td>
+                <td>GET</td>
+                <td>
+                    id={ProjectId}<br />
+                    year={Year}<br />
+                    month={Month [1-12]}<br />
+                    day={Day [1-31]}
+                </td>
+                <td>Get leave and holiday details for a project for a specific day</td>
+            </tr>
+            <tr>
+                <td>@(baseUrl)user/apply</td>
+                <td>POST</td>
+                <td>
+                    email={UserEmail}<br />
+                    leaveCodeName={LeaveCodeName}<br />
+                    reason={Reason}<br />
+                    dates={Dates [dd/MM/yyyy]}
+                </td>
+                <td>
+                    Apply leaves for an user<br/>
+                    Response format<br/>
+                    Success<br/>
+                    <pre>
+                    {
+                        "Success": true
+                    }
+                    </pre>
+                    Fail<br/>
+                    <pre>
+                    {
+                        "Success": false,
+                        "Error": "{error}"
+                    }
+                    </pre>
+                    <span class="text-danger" >
+                        Note: dates parameter can appear more than one in the parameters, .e.g <b>dates</b>=28/06/2015&<b>dates</b>=29/06/2015. In this case it will apply leaves for 2 days
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-header" >
+        <h3>Test database connection</h3>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    Mongo Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Country
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@user.GoogleProfile.ProfileImageUrl" style="width: 70px; height: 70px" />
+                    </td>
+                    <td>
+                        @user.Id
+                    </td>
+                    <td>
+                        @user.Profile.Name
+                    </td>
+                    <td>
+                        @user.Profile.Email
+                    </td>
+                    <td>
+                        @user.Profile.CountryCode
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

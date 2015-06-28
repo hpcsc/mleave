@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MLeave", "MLeave\MLeave.csproj", "{43D54C9E-EF72-48BE-9DF1-CF5DE2A2C8F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{3D31C698-9AAE-4847-8501-848A2EFD97D0}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{01DFAA25-4D4A-4021-A4F5-D17A35F61CE9}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\MLeave-WAWS-dev.json = PublishScripts\Configurations\MLeave-WAWS-dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43D54C9E-EF72-48BE-9DF1-CF5DE2A2C8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43D54C9E-EF72-48BE-9DF1-CF5DE2A2C8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43D54C9E-EF72-48BE-9DF1-CF5DE2A2C8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43D54C9E-EF72-48BE-9DF1-CF5DE2A2C8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{01DFAA25-4D4A-4021-A4F5-D17A35F61CE9} = {3D31C698-9AAE-4847-8501-848A2EFD97D0}
+	EndGlobalSection
+EndGlobal
